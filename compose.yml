@@ -1,0 +1,21 @@
+services:
+    php:
+        image: dunglas/frankenphp:latest-php8.2-alpine
+        restart: unless-stopped
+        environment:
+            APP_ENV: prod
+            DEBUG: 0
+            SERVER_NAME: ${SERVER_NAME:-:80}, php:80
+            #MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+            #MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+            #TRUSTED_PROXIES: ${TRUSTED_PROXIES:-127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16}
+            #TRUSTED_HOSTS: ^${SERVER_NAME:-example\.com|localhost}|php$$
+        volumes:
+            - caddy_data:/data
+            - caddy_config:/config
+        ports:
+            - 8800:80
+
+volumes:
+    caddy_data:
+    caddy_config:

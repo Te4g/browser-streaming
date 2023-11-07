@@ -1,0 +1,10 @@
+services:
+    php:
+        environment:
+            APP_ENV: dev
+            DEBUG: 1
+            MERCURE_EXTRA_DIRECTIVES: demo
+            XDEBUG_MODE: "${XDEBUG_MODE:-off}"
+        volumes:
+            - ./:/app
+        tty: true
